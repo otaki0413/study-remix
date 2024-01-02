@@ -20,8 +20,21 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
-        <Outlet />
+      <body className="h-screen overflow-hidden">
+        <div className="flex h-full flex-col bg-gray-800">
+          <div>
+            <img
+              src="/remix-logo-new@dark.png"
+              alt="Remix Logo: Colorful letters glowing on a dark background"
+              className="h-16 p-2"
+            />
+          </div>
+
+          <div className="min-h-0 flex-grow">
+            <Outlet />
+          </div>
+        </div>
+
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
