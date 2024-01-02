@@ -26,7 +26,7 @@ export function sortByStatusOrder(order: string[]) {
   return (a: string, b: string) => {
     let indexA = order.indexOf(a);
     let indexB = order.indexOf(b);
-    console.log(`${a}の位置は ${indexA}, ${b}の位置は ${indexB}`);
+    // console.log(`${a}の位置は ${indexA}, ${b}の位置は ${indexB}`);
 
     // If a is not in order array, set its index to be larger than the length of the order array
     if (indexA === -1) indexA = order.length;

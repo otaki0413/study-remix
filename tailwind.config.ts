@@ -1,10 +1,13 @@
 import type { Config } from "tailwindcss";
+import forms from "@tailwindcss/forms";
 
 export default {
   content: ["./app/**/*.{js,jsx,ts,tsx}"],
+  plugin: [forms],
   theme: {
     extend: {},
     colors: {
+      transparent: "transparent",
       white: "#ffffff",
       black: "#000000",
       gray: {
@@ -99,5 +102,4 @@ export default {
       },
     },
   },
-  plugins: [require("@tailwindcss/forms")],
 } satisfies Config;
