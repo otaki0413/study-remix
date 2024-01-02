@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { type Company, getCompanies } from "../../fake-data";
@@ -54,10 +54,49 @@ function Column({
 }
 
 function CompanyCard({ company }: { company: Company }) {
+  const [acceptDrop, setAcceptDrop] = useState<"none" | "top" | "bottom">(
+    "none",
+  );
   return (
-    <li>
-      <div className="m-3 rounded bg-white p-2 shadow">
-        <h3 className="font-bold">{company.name}</h3>
+    <li
+      onDragOver={(e) => {
+        console.log(e.dataTransfer.types);
+        if (e.dataTransfer.types.includes("application/remix-demo")) {
+          e.preventDefault();
+          const rect = e.currentTarget.getBoundingClientRect();
+          const midpoint = (rect.top + rect.bottom) / 2;
+          setAcceptDrop(e.clientY < midpoint ? "top" : "bottom");
+        }
+      }}
+      onDragLeave={() => {
+        setAcceptDrop("none");
+      }}
+      onDrop={(e) => {
+        const data = e.dataTransfer.getData("application/remix-demo");
+        setAcceptDrop("none");
+        console.log(data);
+      }}
+      className={
+        "-mb-[2px] cursor-grab border-b-2 border-t-2 active:cursor-grabbing " +
+        (acceptDrop === "top"
+          ? "border-b-transparent border-t-red-brand"
+          : acceptDrop === "bottom"
+            ? "border-t-transparent border-b-red-brand"
+            : "border-t-transparent border-b-transparent")
+      }
+    >
+      <div
+        className="mx-3 my-1 rounded border border-gray-100 bg-white p-2 shadow-sm"
+        draggable
+        onDragStart={(e) => {
+          console.log("drag start", company.id);
+          e.dataTransfer.effectAllowed = "move";
+          e.dataTransfer.setData("application/remix-demo", company.id);
+        }}
+      >
+        <h3 className="font-bold">
+          {company.name} {company.order}
+        </h3>
         <div className="flex gap-2 text-gray-600">
           <Icon name="pin" /> <span>{company.city}</span>
         </div>

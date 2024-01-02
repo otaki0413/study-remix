@@ -9,11 +9,20 @@ export type Company = {
   contact: string;
   email: string;
   status: "New" | "Active" | "Inactive";
+  order: number;
 };
 
 const companies: Company[] = [];
 
+const statusOrders: Map<string, number> = new Map();
+
 for (let i = 0; i < 15; i++) {
+  const status: Company["status"] =
+    Math.random() > 0.5 ? "New" : Math.random() > 0.5 ? "Active" : "Inactive";
+
+  const order = statusOrders.get(status) || 0;
+  statusOrders.set(status, order + 1);
+
   companies.push({
     id: faker.string.uuid(),
     name: faker.company.name(),
@@ -22,8 +31,8 @@ for (let i = 0; i < 15; i++) {
     phone: faker.phone.number(),
     contact: faker.person.fullName(),
     email: faker.internet.email(),
-    status:
-      Math.random() > 0.5 ? "New" : Math.random() > 0.5 ? "Active" : "Inactive",
+    status,
+    order,
   });
 }
 

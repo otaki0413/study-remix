@@ -7,7 +7,7 @@ import { type Company } from "../../fake-data";
  * @returns - グループ化された企業のオブジェクト
  */
 export function groupCompanies(companies: Company[], field: keyof Company) {
-  return companies.reduce(
+  const groups = companies.reduce(
     (acc, company) => {
       const key = company[field]; // status
       const current = acc[key] || []; // statusに紐づく現在のリスト
@@ -15,6 +15,10 @@ export function groupCompanies(companies: Company[], field: keyof Company) {
     },
     {} as Record<string, Company[]>,
   );
+  for (const key in groups) {
+    groups[key].sort((a, b) => a.order - b.order);
+  }
+  return groups;
 }
 
 /**
