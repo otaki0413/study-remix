@@ -20,7 +20,7 @@ import {
   createItem,
 } from "./query";
 import { badRequest, notFound } from "../../http/bad-response";
-import { Icon } from "./icons";
+import { Icon } from "../../icons/icons";
 
 const INTENTS = {
   newColumn: "newColumn" as const,
