@@ -41,7 +41,7 @@ export default function Signup() {
                 >
                   Email address{" "}
                   {actionResult?.errors?.email && (
-                    <span id="email-error" className="text-red-brand">
+                    <span id="email-error" className="text-brand-red">
                       {actionResult.errors.email}
                     </span>
                   )}
@@ -66,7 +66,7 @@ export default function Signup() {
                 >
                   Password{" "}
                   {actionResult?.errors?.password && (
-                    <span id="password-error" className="text-red-brand">
+                    <span id="password-error" className="text-brand-red">
                       {actionResult.errors.password}
                     </span>
                   )}
@@ -114,7 +114,7 @@ export default function Signup() {
                   type="submit"
                   className="hover:bg-indigo-500 focus-visible:outline-indigo-600 flex w-full justify-center rounded-md bg-pink-brand px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
-                  Sign in
+                  Sign Up
                 </button>
               </div>
             </Form>

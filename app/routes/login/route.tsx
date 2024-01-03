@@ -44,7 +44,7 @@ export default function Login() {
                 >
                   Email address{" "}
                   {actionResult?.errors?.email && (
-                    <span id="email-error" className="text-red-brand">
+                    <span id="email-error" className="text-brand-red">
                       {actionResult.errors.email}
                     </span>
                   )}
@@ -69,7 +69,7 @@ export default function Login() {
                 >
                   Password{" "}
                   {actionResult?.errors?.password && (
-                    <span id="password-error" className="text-red-brand">
+                    <span id="password-error" className="text-brand-red">
                       {actionResult.errors.password}
                     </span>
                   )}
@@ -113,7 +113,7 @@ export default function Login() {
               </div> */}
 
               <div>
-                <div className="text-red-brand">
+                <div className="text-brand-red">
                   {actionResult?.errors?.message ? (
                     actionResult.errors.message
                   ) : (
